@@ -1,7 +1,5 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Image from "next/image";
 
 export const metadata = {
   title: "World Ranks",
@@ -11,7 +9,12 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="bg-[--gray-black]">
+        <header className="bg-[url('../../public/hero-image-wr.jpg')] w-screen h-60 bg-cover bg-center flex justify-center items-center">
+          <Image src="Logo.svg" alt="Logo image" height={250} width={250} />
+        </header>
+        {children}
+      </body>
     </html>
   );
 };
