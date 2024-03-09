@@ -24,6 +24,88 @@ const Home = () => {
             />
           </div>
         </div>
+        <div className="flex justify-between">
+          <div className="flex flex-col">
+            <p>Sort By</p>
+            <input
+              list="sort"
+              id="sortBy"
+              name="sortBy"
+              placeholder="Select a type"
+              value="Population"
+            />
+            <datalist id="sort">
+              <option value="Population" />
+              <option value="Name" />
+              <option value="Area" />
+              <option value="Region" />
+            </datalist>
+            <p>Region</p>
+            {/* Tags */}
+            <div>
+              <p>Americas</p>
+              <p>Antarctic</p>
+              <p>Africa</p>
+              <p>Asia</p>
+              <p>Europe</p>
+              <p>Oceania</p>
+            </div>
+            <p>Status</p>
+            <div className="flex">
+              <input
+                type="checkbox"
+                name="Member of the United Nations"
+                id="mun"
+                value="Member"
+              />
+              <label>Member of the United Nations</label>
+            </div>
+            <div className="flex">
+              <input
+                type="checkbox"
+                name="Independent"
+                id="idpt"
+                value="Independent"
+              />
+
+              <label>Independent</label>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Flag</th>
+                <th>Name</th>
+                <th>Population</th>
+                <th>Area(km²)</th>
+                <th>Region</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bandeira</td>
+                <td>China</td>
+                <td>1,402,112,000</td>
+                <td>9,706,961</td>
+                <td>Asia</td>
+              </tr>
+              <tr>
+                <td>Bandeira</td>
+                <td>China</td>
+                <td>1,402,112,000</td>
+                <td>9,706,961</td>
+                <td>Asia</td>
+              </tr>
+              <tr>
+                <td>Bandeira</td>
+                <td>China</td>
+                <td>1,402,112,000</td>
+                <td>9,706,961</td>
+                <td>Asia</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
