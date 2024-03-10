@@ -1,4 +1,6 @@
 import Image from "next/image";
+import CheckInput from "../components/checkInput";
+import RegionTag from "../components/regionTag";
 
 const Home = () => {
   return (
@@ -55,74 +57,17 @@ const Home = () => {
               <p className="text-[--gray] mb-2">Region</p>
               {/* Tags */}
               <div className="grid grid-cols-3 gap-2 mb-5">
-                <p className="flex items-center justify-center rounded-lg p-1 text-[--light-white] bg-[--gray]">
-                  Americas
-                </p>
-                <p className="text-[--gray] font-medium cursor-pointer">
-                  Antarctic
-                </p>
-                <p className="text-[--gray] font-medium cursor-pointer">
-                  Africa
-                </p>
-                <p className="text-[--gray] font-medium cursor-pointer">Asia</p>
-                <p className="text-[--gray] font-medium cursor-pointer">
-                  Europe
-                </p>
-                <p className="text-[--gray] font-medium cursor-pointer">
-                  Oceania
-                </p>
+                <RegionTag selected={true} region="Americas" />
+                <RegionTag selected={false} region="Antarctic" />
+                <RegionTag selected={false} region="Africa" />
+                <RegionTag selected={false} region="Europe" />
+                <RegionTag selected={false} region="Oceania" />
               </div>
             </div>
             <div>
               <p className="text-[--gray] mb-2">Status</p>
-              <div className="relative">
-                {false && (
-                  <div className="absolute inset-y-3 flex items-center justify-center">
-                    <Image
-                      src="Done_round.svg"
-                      height={22}
-                      width={22}
-                      alt="Done round logo"
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="flex mb-2">
-                <input
-                  className="w-[1.4em] h-[1.4em] cursor-pointer mr-4 appearance-none border-[1px] rounded-lg checked:bg-[--blue]"
-                  type="checkbox"
-                  name="Member of the United Nations"
-                  id="mun"
-                  value="Member"
-                />
-                <label className="text-[--light-white] font-semibold">
-                  Member of the United Nations
-                </label>
-              </div>
-              <div className="relative">
-                {false && (
-                  <div className="absolute inset-y-3 flex items-center justify-center">
-                    <Image
-                      src="Done_round.svg"
-                      height={22}
-                      width={22}
-                      alt="Done round logo"
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="flex">
-                <input
-                  className="w-[1.4em] h-[1.4em] cursor-pointer mr-4 appearance-none border-[1px] rounded-lg checked:bg-[--blue]"
-                  type="checkbox"
-                  name="Independent"
-                  id="idpt"
-                  value="Independent"
-                />
-                <label className="text-[--light-white] font-semibold">
-                  Independent
-                </label>
-              </div>
+              <CheckInput inputText="Member of the United Nations" />
+              <CheckInput inputText="Independent" />
             </div>
           </div>
           <table className="appearance-none mt-4 w-10/12 border-2 border-red-500">
