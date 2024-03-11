@@ -1,6 +1,7 @@
 import Image from "next/image";
 import CheckInput from "../components/checkInput";
 import RegionTag from "../components/regionTag";
+import TableRows from "../components/tableRows";
 
 const Home = () => {
   return (
@@ -70,7 +71,7 @@ const Home = () => {
               <CheckInput inputText="Independent" />
             </div>
           </div>
-          <table className="appearance-none mt-4 w-10/12 border-2 border-red-500">
+          <table className="appearance-none mt-4 w-10/12 border-2 border-red-500 h-[500px]">
             <thead>
               <tr className="">
                 <th className="text-[--gray] text-left">Flag</th>
@@ -81,27 +82,7 @@ const Home = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="text-[--light-white]">Bandeira</td>
-                <td className="text-[--light-white]">China</td>
-                <td className="text-[--light-white]">1,402,112,000</td>
-                <td className="text-[--light-white]">9,706,961</td>
-                <td className="text-[--light-white]">Asia</td>
-              </tr>
-              <tr>
-                <td className="text-[--light-white]">Bandeira</td>
-                <td className="text-[--light-white]">China</td>
-                <td className="text-[--light-white]">1,402,112,000</td>
-                <td className="text-[--light-white]">9,706,961</td>
-                <td className="text-[--light-white]">Asia</td>
-              </tr>
-              <tr>
-                <td className="text-[--light-white]">Bandeira</td>
-                <td className="text-[--light-white]">China</td>
-                <td className="text-[--light-white]">1,402,112,000</td>
-                <td className="text-[--light-white]">9,706,961</td>
-                <td className="text-[--light-white]">Asia</td>
-              </tr>
+              <TableRows />
             </tbody>
           </table>
         </div>
