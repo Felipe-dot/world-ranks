@@ -18,9 +18,9 @@ const TableRows = () => {
 
   return countries.map(
     (country, idx) =>
-      idx < 5 && (
+      idx < 20 && (
         <tr key={idx}>
-          <td className="text-[--light-white">
+          <td>
             <Image
               src={country.flags.svg}
               width={80}
@@ -28,10 +28,24 @@ const TableRows = () => {
               alt={country.flags.alt}
             />
           </td>
-          <td className="text-[--light-white]">{country.name.common}</td>
-          <td className="text-[--light-white]">{country.population}</td>
-          <td className="text-[--light-white]">{country.area}</td>
-          <td className="text-[--light-white]">{country.region}</td>
+          <td className="text-[--light-white] font-semibold text-lg">
+            {country.name.common}
+          </td>
+          <td className="text-[--light-white] font-semibold text-lg">
+            {country.population
+              .toLocaleString()
+              .replace(/\./g, " ")
+              .replace(",", ",")}
+          </td>
+          <td className="text-[--light-white] font-semibold text-lg">
+            {country.area
+              .toLocaleString()
+              .replace(/\./g, " ")
+              .replace(",", ".")}
+          </td>
+          <td className="text-[--light-white] font-semibold text-lg">
+            {country.region}
+          </td>
         </tr>
       )
   );

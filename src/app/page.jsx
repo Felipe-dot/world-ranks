@@ -71,20 +71,32 @@ const Home = () => {
               <CheckInput inputText="Independent" />
             </div>
           </div>
-          <table className="appearance-none mt-4 w-10/12 border-2 border-red-500 h-[500px]">
-            <thead>
-              <tr className="">
-                <th className="text-[--gray] text-left">Flag</th>
-                <th className="text-[--gray] text-left">Name</th>
-                <th className="text-[--gray] text-left">Population</th>
-                <th className="text-[--gray] text-left">Area(km²)</th>
-                <th className="text-[--gray] text-left">Region</th>
-              </tr>
-            </thead>
-            <tbody>
-              <TableRows />
-            </tbody>
-          </table>
+          <div className="ml-20 h-[600px] w-full overflow-y-auto">
+            <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 w-11/12">
+              <thead>
+                <tr>
+                  <th className="text-[--gray] text-left w-32 border-b-2 border-[--gray]">
+                    Flag
+                  </th>
+                  <th className="text-[--gray] text-left w-72 border-b-2 border-[--gray]">
+                    Name
+                  </th>
+                  <th className="text-[--gray] text-left border-b-2 border-[--gray] ">
+                    Population
+                  </th>
+                  <th className="text-[--gray] text-left border-b-2 border-[--gray]">
+                    Area(km²)
+                  </th>
+                  <th className="text-[--gray] text-left border-b-2 border-[--gray]">
+                    Region
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <TableRows />
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
