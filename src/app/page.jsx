@@ -75,35 +75,7 @@ const Home = () => {
               <CheckInput inputText="Independent" />
             </div>
           </div>
-          <div
-            className="ml-20 h-[600px] w-full overflow-y-auto"
-            style={{ "scrollbar-width": "none" }}
-          >
-            <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 w-11/12">
-              <thead>
-                <tr>
-                  <th className="text-[--gray] text-left w-32 border-b-2 border-[--gray] pb-2">
-                    Flag
-                  </th>
-                  <th className="text-[--gray] text-left w-72 border-b-2 border-[--gray] pb-2">
-                    Name
-                  </th>
-                  <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2 ">
-                    Population
-                  </th>
-                  <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
-                    Area(km²)
-                  </th>
-                  <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
-                    Region
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <TableRows />
-              </tbody>
-            </table>
-          </div>
+          <TableRows />
         </div>
       </div>
     </div>
