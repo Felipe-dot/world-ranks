@@ -28,10 +28,12 @@ const Home = () => {
           </div>
         </div>
         <div className="ml-5 flex justify-between">
-          <div className="flex flex-col h-80 justify-around">
+          <div className="flex flex-col h-96 justify-around">
             {/* Sort by */}
             <div>
-              <p className="text-[--gray] mb-2">Sort By</p>
+              <p className="text-[--gray] mb-2 mt-8 text-sm font-semibold">
+                Sort By
+              </p>
               <div className="relative">
                 <div className="absolute inset-y-5 right-0 flex items-center px-2">
                   <Image
@@ -43,7 +45,7 @@ const Home = () => {
                 </div>
               </div>
               <select
-                className="appearance-none focus:outline-none rounded-lg w-64 p-1 pl-2 bg-[--gray-black] text-[--light-white] border-2 border-[--gray]"
+                className="appearance-none focus:outline-none rounded-lg w-72 p-2 pl-2 bg-[--gray-black] text-[--light-white] border-2 border-[--gray] mb-4"
                 name="sortBy"
                 id="sb"
               >
@@ -55,7 +57,7 @@ const Home = () => {
             </div>
             {/* Region */}
             <div>
-              <p className="text-[--gray] mb-2">Region</p>
+              <p className="text-[--gray] mb-2 text-sm font-semibold">Region</p>
               {/* Tags */}
               <div className="grid grid-cols-3 gap-2 mb-5">
                 <RegionTag selected={true} region="Americas" />
@@ -66,28 +68,33 @@ const Home = () => {
               </div>
             </div>
             <div>
-              <p className="text-[--gray] mb-2">Status</p>
+              <p className="text-[--gray] mb-2 text-sm font-semibold ">
+                Status
+              </p>
               <CheckInput inputText="Member of the United Nations" />
               <CheckInput inputText="Independent" />
             </div>
           </div>
-          <div className="ml-20 h-[600px] w-full overflow-y-auto">
+          <div
+            className="ml-20 h-[600px] w-full overflow-y-auto"
+            style={{ "scrollbar-width": "none" }}
+          >
             <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 w-11/12">
               <thead>
                 <tr>
-                  <th className="text-[--gray] text-left w-32 border-b-2 border-[--gray]">
+                  <th className="text-[--gray] text-left w-32 border-b-2 border-[--gray] pb-2">
                     Flag
                   </th>
-                  <th className="text-[--gray] text-left w-72 border-b-2 border-[--gray]">
+                  <th className="text-[--gray] text-left w-72 border-b-2 border-[--gray] pb-2">
                     Name
                   </th>
-                  <th className="text-[--gray] text-left border-b-2 border-[--gray] ">
+                  <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2 ">
                     Population
                   </th>
-                  <th className="text-[--gray] text-left border-b-2 border-[--gray]">
+                  <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
                     Area(km²)
                   </th>
-                  <th className="text-[--gray] text-left border-b-2 border-[--gray]">
+                  <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
                     Region
                   </th>
                 </tr>
