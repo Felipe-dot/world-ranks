@@ -5,6 +5,15 @@ import Image from "next/image";
 
 const TableRows = () => {
   const [countries, setCountries] = useState([]);
+  const [amountOfCountries, setAmountOfCountries] = useState(10);
+
+  const handleScroll = (e) => {
+    const bottom =
+      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (bottom) {
+      setAmountOfCountries((prev) => prev + 10);
+    }
+  };
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -16,38 +25,69 @@ const TableRows = () => {
     fetchCountries();
   }, []);
 
-  return countries.map(
-    (country, idx) =>
-      idx < 20 && (
-        <tr key={idx}>
-          <td>
-            <Image
-              src={country.flags.svg}
-              width={80}
-              height={10}
-              alt={country.flags.alt}
-            />
-          </td>
-          <td className="text-[--light-white] font-semibold text-lg">
-            {country.name.common}
-          </td>
-          <td className="text-[--light-white] font-semibold text-lg">
-            {country.population
-              .toLocaleString()
-              .replace(/\./g, " ")
-              .replace(",", ",")}
-          </td>
-          <td className="text-[--light-white] font-semibold text-lg">
-            {country.area
-              .toLocaleString()
-              .replace(/\./g, " ")
-              .replace(",", ".")}
-          </td>
-          <td className="text-[--light-white] font-semibold text-lg">
-            {country.region}
-          </td>
-        </tr>
-      )
+  return (
+    <div
+      className="ml-20 h-[600px] w-full overflow-y-auto"
+      style={{ "scrollbar-width": "none" }}
+      onScroll={handleScroll}
+    >
+      <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 w-11/12">
+        <thead>
+          <tr>
+            <th className="text-[--gray] text-left w-32 border-b-2 border-[--gray] pb-2">
+              Flag
+            </th>
+            <th className="text-[--gray] text-left w-72 border-b-2 border-[--gray] pb-2">
+              Name
+            </th>
+            <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2 ">
+              Population
+            </th>
+            <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
+              Area(km²)
+            </th>
+            <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
+              Region
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {countries.map(
+            (country, idx) =>
+              idx < amountOfCountries && (
+                <tr key={idx} className="cursor-pointer">
+                  <td>
+                    <Image
+                      src={country.flags.svg}
+                      width={80}
+                      height={10}
+                      alt={country.flags.alt}
+                    />
+                  </td>
+                  <td className="text-[--light-white] font-semibold text-lg">
+                    {country.name.common}
+                  </td>
+                  <td className="text-[--light-white] font-semibold text-lg">
+                    {country.population
+                      .toLocaleString()
+                      .replace(/\./g, " ")
+                      .replace(",", ",")}
+                  </td>
+                  <td className="text-[--light-white] font-semibold text-lg">
+                    {country.area
+                      .toLocaleString()
+                      .replace(/\./g, " ")
+                      .replace(",", ".")}
+                  </td>
+                  <td className="text-[--light-white] font-semibold text-lg">
+                    {country.region}
+                  </td>
+                </tr>
+              )
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
