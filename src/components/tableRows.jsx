@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const TableRows = () => {
+const TableRows = ({ orderProp }) => {
   const [countries, setCountries] = useState([]);
   const [amountOfCountries, setAmountOfCountries] = useState(10);
 
@@ -15,20 +15,49 @@ const TableRows = () => {
     }
   };
 
+  function orderBy(array, prop) {
+    return array.sort(function (a, b) {
+      if (prop == "name") {
+        if (a[prop].common < b[prop].common) {
+          return -1;
+        }
+        if (a[prop].common > b[prop].common) {
+          return 1;
+        }
+      }
+
+      if (a[prop] < b[prop]) {
+        return -1;
+      }
+      if (a[prop] > b[prop]) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
   useEffect(() => {
     const fetchCountries = async () => {
       const response = await fetch("https://restcountries.com/v3.1/all");
       const data = await response.json();
-      setCountries(data);
+      const arrayOrder = orderBy(data, orderProp);
+      setCountries(arrayOrder);
     };
 
     fetchCountries();
   }, []);
 
+  console.log("ORDER PROP AQUI NA TABLE=====" + orderProp);
+
+  useEffect(() => {
+    const arrayOrder = orderBy(countries, orderProp);
+    setCountries(arrayOrder);
+  }, [orderProp]);
+
   return (
     <div
       className="ml-20 h-[600px] w-full overflow-y-auto"
-      style={{ "scrollbar-width": "none" }}
+      style={{ scrollbarWidth: "none" }}
       onScroll={handleScroll}
     >
       <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 w-11/12">
@@ -61,7 +90,7 @@ const TableRows = () => {
                       src={country.flags.svg}
                       width={80}
                       height={10}
-                      alt={country.flags.alt}
+                      alt={country.flags.alt && "country flag"}
                     />
                   </td>
                   <td className="text-[--light-white] font-semibold text-lg">

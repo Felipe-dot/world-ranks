@@ -1,12 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import CheckInput from "../components/checkInput";
 import RegionTag from "../components/regionTag";
 import TableRows from "../components/tableRows";
 
+import { useState } from "react";
+
 const Home = () => {
+  const [orderProp, setOrderProp] = useState("population");
+
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setOrderProp(event.target.value);
+    // console.log(orderProp);
+  };
+
   return (
     <div className="flex justify-center items-center">
-      <div className="relative bottom-10 bg-[--gray-black] shadow-2xl w-11/12 h-[700px] rounded-md z-20">
+      <div className="relative bottom-20 bg-[--gray-black] shadow-2xl w-11/12 h-[700px] rounded-md z-20">
         <div className="flex mt-4 items-center justify-between ml-5 mr-5">
           <h3 className="text-[--gray] font-semibold">Found 234 countries</h3>
           <div className="relative">
@@ -47,12 +59,12 @@ const Home = () => {
               <select
                 className="appearance-none focus:outline-none rounded-lg w-72 p-2 pl-2 bg-[--gray-black] text-[--light-white] border-2 border-[--gray] mb-4"
                 name="sortBy"
-                id="sb"
+                value={orderProp}
+                onChange={handleChange}
               >
                 <option value="population">Population</option>
                 <option value="name">Name</option>
                 <option value="area">Area</option>
-                <option value="region">Region</option>
               </select>
             </div>
             {/* Region */}
@@ -75,7 +87,7 @@ const Home = () => {
               <CheckInput inputText="Independent" />
             </div>
           </div>
-          <TableRows />
+          <TableRows orderProp={orderProp} />
         </div>
       </div>
     </div>
