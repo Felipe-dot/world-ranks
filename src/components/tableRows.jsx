@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const TableRows = ({ orderProp }) => {
+const TableRows = ({ orderProp = "population" }) => {
   const [countries, setCountries] = useState([]);
   const [amountOfCountries, setAmountOfCountries] = useState(10);
 
@@ -47,18 +47,19 @@ const TableRows = ({ orderProp }) => {
     fetchCountries();
   }, []);
 
-  console.log("ORDER PROP AQUI NA TABLE=====" + orderProp);
-
   useEffect(() => {
     const arrayOrder = orderBy(countries, orderProp);
-    setCountries(arrayOrder);
-  }, [orderProp]);
+    setCountries([...arrayOrder]);
+  }, [countries, orderProp]);
+
+  console.log("TAMANHO DOS PAISES" + countries.length);
 
   return (
     <div
       className="ml-20 h-[600px] w-full overflow-y-auto"
       style={{ scrollbarWidth: "none" }}
       onScroll={handleScroll}
+      key={"ABACATE"}
     >
       <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 w-11/12">
         <thead>
@@ -84,7 +85,7 @@ const TableRows = ({ orderProp }) => {
           {countries.map(
             (country, idx) =>
               idx < amountOfCountries && (
-                <tr key={idx} className="cursor-pointer">
+                <tr key={country.name.common} className="cursor-pointer">
                   <td>
                     <Image
                       src={country.flags.svg}

@@ -11,9 +11,7 @@ const Home = () => {
   const [orderProp, setOrderProp] = useState("population");
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setOrderProp(event.target.value);
-    // console.log(orderProp);
   };
 
   return (
