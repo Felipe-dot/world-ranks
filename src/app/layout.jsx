@@ -9,8 +9,8 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body className="bg-[--gray-black]">
-        <header className="bg-[url('../../public/hero-image-wr.jpg')] w-screen h-60 bg-cover bg-center flex justify-center items-center">
+      <body className="bg-[--gray-black] overflow-hidden">
+        <header className="bg-[url('../../public/hero-image-wr.jpg')] w-screen h-80 bg-cover bg-center flex justify-center items-center ">
           <Image src="Logo.svg" alt="Logo image" height={250} width={250} />
         </header>
         {children}
