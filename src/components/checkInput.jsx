@@ -19,8 +19,8 @@ const CheckInput = ({ inputText }) => {
         <input
           className="w-[1.4em] h-[1.4em] cursor-pointer mr-4 appearance-none border-[1px] rounded-lg checked:bg-[--blue]"
           type="checkbox"
-          name="Member of the United Nations"
-          id="mun"
+          name={inputText}
+          id={inputText}
           value="Member"
         />
         <label className="text-[--light-white] font-semibold">

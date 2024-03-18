@@ -3,8 +3,12 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const TableRows = ({ orderProp = "population" }) => {
-  const [countries, setCountries] = useState([]);
+const TableRows = ({
+  countries,
+  setCountries,
+  orderProp = "population",
+  setCountriesFounded,
+}) => {
   const [amountOfCountries, setAmountOfCountries] = useState(10);
 
   const handleScroll = (e) => {
@@ -41,18 +45,19 @@ const TableRows = ({ orderProp = "population" }) => {
       const response = await fetch("https://restcountries.com/v3.1/all");
       const data = await response.json();
       const arrayOrder = orderBy(data, orderProp);
+      setCountriesFounded(arrayOrder.length);
       setCountries(arrayOrder);
     };
 
-    fetchCountries();
+    if (countries.length === 0) {
+      fetchCountries();
+    }
   }, []);
 
   useEffect(() => {
     const arrayOrder = orderBy(countries, orderProp);
     setCountries([...arrayOrder]);
-  }, [countries, orderProp]);
-
-  console.log("TAMANHO DOS PAISES" + countries.length);
+  }, [orderProp]);
 
   return (
     <div
@@ -91,7 +96,7 @@ const TableRows = ({ orderProp = "population" }) => {
                       src={country.flags.svg}
                       width={80}
                       height={10}
-                      alt={country.flags.alt && "country flag"}
+                      alt={country.flags.alt ?? "country flag"}
                     />
                   </td>
                   <td className="text-[--light-white] font-semibold text-lg">

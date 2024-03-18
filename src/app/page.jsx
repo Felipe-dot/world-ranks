@@ -9,6 +9,9 @@ import { useState } from "react";
 
 const Home = () => {
   const [orderProp, setOrderProp] = useState("population");
+  const [countries, setCountries] = useState([]);
+  const [countriesFounded, setCountriesFounded] = useState(240);
+  const [arrOfRegions, setArrOfRegions] = useState([""]);
 
   const handleChange = (event) => {
     setOrderProp(event.target.value);
@@ -18,7 +21,9 @@ const Home = () => {
     <div className="flex justify-center items-center">
       <div className="relative bottom-20 bg-[--gray-black] shadow-2xl w-11/12 h-[700px] rounded-md z-20">
         <div className="flex mt-4 items-center justify-between ml-5 mr-5">
-          <h3 className="text-[--gray] font-semibold">Found 234 countries</h3>
+          <h3 className="text-[--gray] font-semibold">
+            Found {countriesFounded} countries
+          </h3>
           <div className="relative">
             <div className="absolute inset-y-0 left-2 flex items-center ">
               <Image
@@ -31,8 +36,8 @@ const Home = () => {
             <input
               className="pl-10 appearance-none focus:outline-none p-2 rounded-lg w-80 bg-[--dark-black] shadow-md text-[--light-white] "
               type="text"
-              name=""
-              id=""
+              name="searchby"
+              id="srcby"
               placeholder="Search by Name, Region, Subregion"
             />
           </div>
@@ -70,11 +75,11 @@ const Home = () => {
               <p className="text-[--gray] mb-2 text-sm font-semibold">Region</p>
               {/* Tags */}
               <div className="grid grid-cols-3 gap-2 mb-5">
-                <RegionTag selected={true} region="Americas" />
-                <RegionTag selected={false} region="Antarctic" />
-                <RegionTag selected={false} region="Africa" />
-                <RegionTag selected={false} region="Europe" />
-                <RegionTag selected={false} region="Oceania" />
+                <RegionTag region="Americas" arrOfRegions={arrOfRegions} />
+                <RegionTag region="Antarctic" arrOfRegions={arrOfRegions} />
+                <RegionTag region="Africa" arrOfRegions={arrOfRegions} />
+                <RegionTag region="Europe" arrOfRegions={arrOfRegions} />
+                <RegionTag region="Oceania" arrOfRegions={arrOfRegions} />
               </div>
             </div>
             <div>
@@ -85,7 +90,12 @@ const Home = () => {
               <CheckInput inputText="Independent" />
             </div>
           </div>
-          <TableRows orderProp={orderProp} />
+          <TableRows
+            countries={countries}
+            setCountries={setCountries}
+            orderProp={orderProp}
+            setCountriesFounded={setCountriesFounded}
+          />
         </div>
       </div>
     </div>
