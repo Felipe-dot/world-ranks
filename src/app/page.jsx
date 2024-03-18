@@ -11,7 +11,7 @@ const Home = () => {
   const [orderProp, setOrderProp] = useState("population");
   const [countries, setCountries] = useState([]);
   const [countriesFounded, setCountriesFounded] = useState(240);
-  const [arrOfRegions, setArrOfRegions] = useState([""]);
+  const [arrOfRegions, setArrOfRegions] = useState([]);
 
   const handleChange = (event) => {
     setOrderProp(event.target.value);
@@ -75,11 +75,31 @@ const Home = () => {
               <p className="text-[--gray] mb-2 text-sm font-semibold">Region</p>
               {/* Tags */}
               <div className="grid grid-cols-3 gap-2 mb-5">
-                <RegionTag region="Americas" arrOfRegions={arrOfRegions} />
-                <RegionTag region="Antarctic" arrOfRegions={arrOfRegions} />
-                <RegionTag region="Africa" arrOfRegions={arrOfRegions} />
-                <RegionTag region="Europe" arrOfRegions={arrOfRegions} />
-                <RegionTag region="Oceania" arrOfRegions={arrOfRegions} />
+                <RegionTag
+                  region="Americas"
+                  arrOfRegions={arrOfRegions}
+                  setArrOfRegions={setArrOfRegions}
+                />
+                <RegionTag
+                  region="Antarctic"
+                  arrOfRegions={arrOfRegions}
+                  setArrOfRegions={setArrOfRegions}
+                />
+                <RegionTag
+                  region="Africa"
+                  arrOfRegions={arrOfRegions}
+                  setArrOfRegions={setArrOfRegions}
+                />
+                <RegionTag
+                  region="Europe"
+                  arrOfRegions={arrOfRegions}
+                  setArrOfRegions={setArrOfRegions}
+                />
+                <RegionTag
+                  region="Oceania"
+                  arrOfRegions={arrOfRegions}
+                  setArrOfRegions={setArrOfRegions}
+                />
               </div>
             </div>
             <div>

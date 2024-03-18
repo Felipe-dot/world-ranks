@@ -21,7 +21,7 @@ const CheckInput = ({ inputText }) => {
           type="checkbox"
           name={inputText}
           id={inputText}
-          value="Member"
+          value={inputText}
         />
         <label className="text-[--light-white] font-semibold">
           {inputText}
