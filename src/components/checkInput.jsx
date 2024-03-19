@@ -1,11 +1,17 @@
 import Image from "next/image";
 
-const CheckInput = ({ inputText }) => {
+const CheckInput = ({ inputText, checkInput, setCheckInput }) => {
+  const setInput = () => {
+    setCheckInput((prev) => !prev);
+  };
   return (
     <>
       <div className="relative">
-        {false && (
-          <div className="absolute inset-y-3 flex items-center justify-center">
+        {checkInput && (
+          <div
+            className="absolute inset-y-3 flex items-center justify-center cursor-pointer"
+            onClick={() => setInput()}
+          >
             <Image
               src="Done_round.svg"
               height={22}
@@ -21,7 +27,8 @@ const CheckInput = ({ inputText }) => {
           type="checkbox"
           name={inputText}
           id={inputText}
-          value={inputText}
+          checked={checkInput}
+          onChange={() => setInput()}
         />
         <label className="text-[--light-white] font-semibold">
           {inputText}

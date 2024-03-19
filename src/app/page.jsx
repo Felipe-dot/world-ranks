@@ -10,8 +10,10 @@ import { useState } from "react";
 const Home = () => {
   const [orderProp, setOrderProp] = useState("population");
   const [countries, setCountries] = useState([]);
-  const [countriesFounded, setCountriesFounded] = useState(240);
+  const [countriesFounded, setCountriesFounded] = useState(250);
   const [arrOfRegions, setArrOfRegions] = useState([]);
+  const [checkMuInput, setCheckMuInput] = useState(false);
+  const [checkIndpInput, setCheckIndpInput] = useState(false);
 
   const handleChange = (event) => {
     setOrderProp(event.target.value);
@@ -106,8 +108,16 @@ const Home = () => {
               <p className="text-[--gray] mb-2 text-sm font-semibold ">
                 Status
               </p>
-              <CheckInput inputText="Member of the United Nations" />
-              <CheckInput inputText="Independent" />
+              <CheckInput
+                inputText="Member of the United Nations"
+                checkInput={checkMuInput}
+                setCheckInput={setCheckMuInput}
+              />
+              <CheckInput
+                inputText="Independent"
+                checkInput={checkIndpInput}
+                setCheckInput={setCheckIndpInput}
+              />
             </div>
           </div>
           <TableRows
