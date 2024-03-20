@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Fuse from "fuse.js";
 import Image from "next/image";
 
 const TableRows = ({
@@ -8,8 +9,30 @@ const TableRows = ({
   setCountries,
   orderProp = "population",
   setCountriesFounded,
+  inputValue,
+  checkMuInput,
+  checkIndpInput,
 }) => {
   const [amountOfCountries, setAmountOfCountries] = useState(10);
+
+  const options = {
+    keys: ["region", "subregion", "name.common"],
+    minMatchCharLength: 1,
+    includeScore: true,
+    useExtendedSearch: true,
+    threshold: 0.2,
+  };
+
+  useEffect(() => {
+    if (inputValue.length > 0) {
+      const fuse = new Fuse(countries, options);
+      const results = fuse.search(inputValue);
+      var filteredPosts = results.map((e) => e.item);
+      setCountries(filteredPosts);
+    } else {
+      // setCountriesFounded([]);
+    }
+  }, [inputValue]);
 
   const handleScroll = (e) => {
     const bottom =

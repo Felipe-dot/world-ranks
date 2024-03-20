@@ -14,6 +14,7 @@ const Home = () => {
   const [arrOfRegions, setArrOfRegions] = useState([]);
   const [checkMuInput, setCheckMuInput] = useState(false);
   const [checkIndpInput, setCheckIndpInput] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event) => {
     setOrderProp(event.target.value);
@@ -36,10 +37,14 @@ const Home = () => {
               />
             </div>
             <input
-              className="pl-10 appearance-none focus:outline-none p-2 rounded-lg w-80 bg-[--dark-black] shadow-md text-[--light-white] "
+              className="pl-10 appearance-none focus:outline-none p-2 rounded-lg w-96 bg-[--dark-black] shadow-md text-[--light-white] "
               type="text"
               name="searchby"
               id="srcby"
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.currentTarget.value);
+              }}
               placeholder="Search by Name, Region, Subregion"
             />
           </div>
@@ -125,6 +130,9 @@ const Home = () => {
             setCountries={setCountries}
             orderProp={orderProp}
             setCountriesFounded={setCountriesFounded}
+            checkMuInput={checkMuInput}
+            checkIndpInput={checkIndpInput}
+            inputValue={inputValue}
           />
         </div>
       </div>
