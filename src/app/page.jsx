@@ -129,6 +129,7 @@ const Home = () => {
             countries={countries}
             setCountries={setCountries}
             orderProp={orderProp}
+            arrOfRegions={arrOfRegions}
             setCountriesFounded={setCountriesFounded}
             checkMuInput={checkMuInput}
             checkIndpInput={checkIndpInput}

@@ -10,10 +10,12 @@ const TableRows = ({
   orderProp = "population",
   setCountriesFounded,
   inputValue,
+  arrOfRegions,
   checkMuInput,
   checkIndpInput,
 }) => {
   const [amountOfCountries, setAmountOfCountries] = useState(10);
+  const [filterCountries, setFilterCountries] = useState([]);
 
   const options = {
     keys: ["region", "subregion", "name.common"],
@@ -27,10 +29,10 @@ const TableRows = ({
     if (inputValue.length > 0) {
       const fuse = new Fuse(countries, options);
       const results = fuse.search(inputValue);
-      var filteredPosts = results.map((e) => e.item);
-      setCountries(filteredPosts);
+      const filteredCountries = results.map((e) => e.item);
+      setFilterCountries(filteredCountries);
     } else {
-      // setCountriesFounded([]);
+      setFilterCountries([]);
     }
   }, [inputValue]);
 
@@ -82,12 +84,27 @@ const TableRows = ({
     setCountries([...arrayOrder]);
   }, [orderProp]);
 
+  useEffect(() => {
+    if (arrOfRegions.length > 0) {
+      const fuse = new Fuse(countries, options);
+      const results = [];
+      arrOfRegions.forEach((e) => {
+        const searchResults = fuse.search(e);
+        results.push(...searchResults);
+      });
+      const filteredCountries = results.map((e) => e.item);
+      setFilterCountries(filteredCountries);
+    } else {
+      setFilterCountries([]);
+    }
+  }, [arrOfRegions]);
+
   return (
     <div
       className="ml-20 h-[600px] w-full overflow-y-auto"
       style={{ scrollbarWidth: "none" }}
       onScroll={handleScroll}
-      key={"ABACATE"}
+      key={"country-table"}
     >
       <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 w-11/12">
         <thead>
@@ -110,39 +127,73 @@ const TableRows = ({
           </tr>
         </thead>
         <tbody>
-          {countries.map(
-            (country, idx) =>
-              idx < amountOfCountries && (
-                <tr key={country.name.common} className="cursor-pointer">
-                  <td>
-                    <Image
-                      src={country.flags.svg}
-                      width={80}
-                      height={10}
-                      alt={country.flags.alt ?? "country flag"}
-                    />
-                  </td>
-                  <td className="text-[--light-white] font-semibold text-lg">
-                    {country.name.common}
-                  </td>
-                  <td className="text-[--light-white] font-semibold text-lg">
-                    {country.population
-                      .toLocaleString()
-                      .replace(/\./g, " ")
-                      .replace(",", ",")}
-                  </td>
-                  <td className="text-[--light-white] font-semibold text-lg">
-                    {country.area
-                      .toLocaleString()
-                      .replace(/\./g, " ")
-                      .replace(",", ".")}
-                  </td>
-                  <td className="text-[--light-white] font-semibold text-lg">
-                    {country.region}
-                  </td>
-                </tr>
+          {filterCountries.length === 0
+            ? countries.map(
+                (country, idx) =>
+                  idx < amountOfCountries && (
+                    <tr key={country.name.common} className="cursor-pointer">
+                      <td>
+                        <Image
+                          src={country.flags.svg}
+                          width={80}
+                          height={10}
+                          alt={country.flags.alt ?? "country flag"}
+                        />
+                      </td>
+                      <td className="text-[--light-white] font-semibold text-lg">
+                        {country.name.common}
+                      </td>
+                      <td className="text-[--light-white] font-semibold text-lg">
+                        {country.population
+                          .toLocaleString()
+                          .replace(/\./g, " ")
+                          .replace(",", ",")}
+                      </td>
+                      <td className="text-[--light-white] font-semibold text-lg">
+                        {country.area
+                          .toLocaleString()
+                          .replace(/\./g, " ")
+                          .replace(",", ".")}
+                      </td>
+                      <td className="text-[--light-white] font-semibold text-lg">
+                        {country.region}
+                      </td>
+                    </tr>
+                  )
               )
-          )}
+            : filterCountries.map(
+                (country, idx) =>
+                  idx < amountOfCountries && (
+                    <tr key={country.name.common} className="cursor-pointer">
+                      <td>
+                        <Image
+                          src={country.flags.svg}
+                          width={80}
+                          height={10}
+                          alt={country.flags.alt ?? "country flag"}
+                        />
+                      </td>
+                      <td className="text-[--light-white] font-semibold text-lg">
+                        {country.name.common}
+                      </td>
+                      <td className="text-[--light-white] font-semibold text-lg">
+                        {country.population
+                          .toLocaleString()
+                          .replace(/\./g, " ")
+                          .replace(",", ",")}
+                      </td>
+                      <td className="text-[--light-white] font-semibold text-lg">
+                        {country.area
+                          .toLocaleString()
+                          .replace(/\./g, " ")
+                          .replace(",", ".")}
+                      </td>
+                      <td className="text-[--light-white] font-semibold text-lg">
+                        {country.region}
+                      </td>
+                    </tr>
+                  )
+              )}
         </tbody>
       </table>
     </div>
