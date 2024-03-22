@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Fuse from "fuse.js";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const TableRows = ({
   countries,
@@ -16,6 +17,7 @@ const TableRows = ({
 }) => {
   const [amountOfCountries, setAmountOfCountries] = useState(10);
   const [filterCountries, setFilterCountries] = useState([]);
+  const router = useRouter();
 
   const options = {
     keys: ["region", "subregion", "name.common"],
@@ -99,6 +101,10 @@ const TableRows = ({
     }
   }, [arrOfRegions]);
 
+  const handleClick = (country) => {
+    router.push(`/country?name=${country.name.common}`);
+  };
+
   return (
     <div
       className="ml-20 h-[600px] w-full overflow-y-auto"
@@ -131,7 +137,11 @@ const TableRows = ({
             ? countries.map(
                 (country, idx) =>
                   idx < amountOfCountries && (
-                    <tr key={country.name.common} className="cursor-pointer">
+                    <tr
+                      key={country.name.common}
+                      className="cursor-pointer"
+                      onClick={() => handleClick(country)}
+                    >
                       <td>
                         <Image
                           src={country.flags.svg}
@@ -164,7 +174,11 @@ const TableRows = ({
             : filterCountries.map(
                 (country, idx) =>
                   idx < amountOfCountries && (
-                    <tr key={country.name.common} className="cursor-pointer">
+                    <tr
+                      key={country.name.common}
+                      className="cursor-pointer"
+                      onClick={() => handleClick(country)}
+                    >
                       <td>
                         <Image
                           src={country.flags.svg}
