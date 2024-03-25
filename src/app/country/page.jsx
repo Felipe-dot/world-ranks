@@ -3,55 +3,107 @@
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import CountryAtrRow from "@/src/components/countryAtrRow";
+import { useEffect, useState } from "react";
 
-const CountryPage = ({ params }) => {
+const CountryPage = () => {
+  const [countryDetails, setCountryDetails] = useState([
+    {
+      name: {
+        common: "",
+        official: "",
+      },
+      capital: [],
+      subregion: "",
+      area: 0,
+      languages: {},
+      currencies: {},
+      continents: [],
+      population: 0,
+      flags: {
+        svg: "",
+        alt: "",
+      },
+
+      borders: [],
+    },
+  ]);
   const searchParams = useSearchParams();
   let countryName = searchParams.get("name");
-  console.log(countryName);
+
+  useEffect(() => {
+    const getCountryDetails = async () => {
+      const response = await fetch(
+        `https://restcountries.com/v3.1/name/${countryName}`
+      );
+      const data = await response.json();
+      setCountryDetails(data);
+    };
+    getCountryDetails();
+  }, []);
+
   return (
     <div className="flex justify-center items-center">
-      <div className="relative bottom-20 bg-[--gray-black] shadow-2xl w-1/2 h-[700px] rounded-md z-20">
+      <div className="relative bottom-10 bg-[--gray-black] shadow-2xl w-1/2 h-[780px] rounded-lg z-20">
         {/* Country Flag */}
-        <div className="flex items-center justify-center flex-col">
+        <div className="flex items-center justify-around h-80 flex-col ">
           <Image
             className="rounded-2xl relative bottom-8"
-            src={"https://flagcdn.com/bv.svg"}
+            src={countryDetails[0].flags.svg}
             height={10}
             width={250}
             alt="Country flag"
           />
-
-          <h1 className="text-[--light-white]">India</h1>
-          <h3 className="text-[--light-white]">Republic of India</h3>
-          <div className="flex justify-evenly w-[600px]">
-            <div className="flex items-center bg-[--gray] rounded-xl p-2">
+          <div className="flex flex-col items-center justify-center">
+            <h1 className="text-[--light-white] text-3xl font-bold">
+              {countryDetails[0].name.common}
+            </h1>
+            <h3 className="text-[--light-white]">
+              {countryDetails[0].name.official}
+            </h3>
+          </div>
+          <div className="flex justify-evenly w-[600px] mb-20 mt-10">
+            <div className="flex items-center bg-[--gray] rounded-xl p-2 opacity-75">
               <p className="text-[--light-white]">Population</p>
-              <hr className=" border ml-2 mr-2 border-black h-full" />
-              <p className="text-[--light-white]">1,380,004,385</p>
+              <hr className=" border ml-2 mr-2 opacity-75 border-black h-full" />
+              <p className="text-[--light-white]">
+                {countryDetails[0].population
+                  .toLocaleString()
+                  .replace(/\./g, " ")
+                  .replace(",", ",")}
+              </p>
             </div>
-            <div className="flex items-center  bg-[--gray] rounded-xl p-2">
+            <div className="flex items-center  bg-[--gray] rounded-xl p-2 opacity-75">
               <p className="text-[--light-white]">Area(km²)</p>
-              <hr className=" border ml-2 mr-2 border-black h-full" />
-              <p className="text-[--light-white]">1,380,004,385</p>
+              <hr className=" border ml-2 mr-2 opacity-75 border-black h-full" />
+              <p className="text-[--light-white]">
+                {" "}
+                {countryDetails[0].area
+                  .toLocaleString()
+                  .replace(/\./g, " ")
+                  .replace(",", ".")}
+              </p>
             </div>
           </div>
         </div>
-        <CountryAtrRow title={"Capital"} content={"New Delhi"} />
-        <CountryAtrRow title={"Subregion"} content={"Southern Asia"} />
-        <CountryAtrRow title={"Language"} content={"English, Hindi, Tamil"} />
+        <CountryAtrRow title={"Capital"} content={countryDetails[0].capital} />
+        <CountryAtrRow
+          title={"Subregion"}
+          content={countryDetails[0].subregion}
+        />
+        <CountryAtrRow title={"Language"} content={""} />
         <CountryAtrRow title={"Currencies"} content={"Indian rupee"} />
         <CountryAtrRow title={"Continents"} content={"Asia"} />
-        <p className="text-[--gray]">Neighbouring Countries</p>
+        <p className="text-[--gray] ml-5 mt-2 mb-4">Neighbouring Countries</p>
         {/* Neighbouring Countries */}
-        <div className=" flex overflow-y-auto">
-          <div className="flex flex-col items-center ml-10 cursor-pointer">
+        <div className="flex overflow-y-auto">
+          <div className="flex flex-col items-center ml-5 cursor-pointer">
             <Image
               src={"https://flagcdn.com/bv.svg"}
               height={10}
               width={60}
               alt="Country flag"
             />
-            <p className="text-[--light-white]">Afghanistan</p>
+            <p className="text-[--light-white] mt-2">Afghanistan</p>
           </div>
         </div>
       </div>
