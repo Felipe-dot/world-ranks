@@ -41,6 +41,39 @@ const CountryPage = () => {
     getCountryDetails();
   }, []);
 
+  function concatenateCurrencies(data) {
+    let currencyNames = [];
+
+    // Concatenate currency names
+    for (const currencyCode in data.currencies) {
+      currencyNames.push(data.currencies[currencyCode].name);
+    }
+
+    // Join the currency names with commas
+    return currencyNames.join(", ");
+  }
+
+  function concatenateValues(data, key) {
+    let concatenatedValues = "";
+
+    if (data.hasOwnProperty(key)) {
+      const values = data[key];
+      if (Array.isArray(values)) {
+        concatenatedValues = values.join(", ");
+      } else {
+        for (const valueKey in values) {
+          if (values.hasOwnProperty(valueKey)) {
+            concatenatedValues += values[valueKey] + ", ";
+          }
+        }
+        // Remove trailing comma and space
+        concatenatedValues = concatenatedValues.slice(0, -2);
+      }
+    }
+
+    return concatenatedValues;
+  }
+
   return (
     <div className="flex justify-center items-center">
       <div className="relative bottom-10 bg-[--gray-black] shadow-2xl w-1/2 h-[780px] rounded-lg z-20">
@@ -90,9 +123,18 @@ const CountryPage = () => {
           title={"Subregion"}
           content={countryDetails[0].subregion}
         />
-        <CountryAtrRow title={"Language"} content={""} />
-        <CountryAtrRow title={"Currencies"} content={"Indian rupee"} />
-        <CountryAtrRow title={"Continents"} content={"Asia"} />
+        <CountryAtrRow
+          title={"Language"}
+          content={concatenateValues(countryDetails[0], "languages")}
+        />
+        <CountryAtrRow
+          title={"Currencies"}
+          content={concatenateCurrencies(countryDetails[0])}
+        />
+        <CountryAtrRow
+          title={"Continents"}
+          content={concatenateValues(countryDetails[0], "continents")}
+        />
         <p className="text-[--gray] ml-5 mt-2 mb-4">Neighbouring Countries</p>
         {/* Neighbouring Countries */}
         <div className="flex overflow-y-auto">
