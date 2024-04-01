@@ -76,7 +76,7 @@ const CountryPage = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="relative bottom-10 bg-[--gray-black] shadow-2xl w-1/2 h-[780px] rounded-lg z-20">
+      <div className="relative bottom-10 bg-[--gray-black] shadow-2xl w-1/2 h-[830px] rounded-lg z-20">
         {/* Country Flag */}
         <div className="flex items-center justify-around h-80 flex-col ">
           <Image
@@ -118,7 +118,14 @@ const CountryPage = () => {
             </div>
           </div>
         </div>
-        <CountryAtrRow title={"Capital"} content={countryDetails[0].capital} />
+        <CountryAtrRow
+          title={"Capital"}
+          content={
+            countryDetails[0] && countryDetails[0].capital
+              ? countryDetails[0].capital.join(", ")
+              : "Not have a capital"
+          }
+        />
         <CountryAtrRow
           title={"Subregion"}
           content={countryDetails[0].subregion}
