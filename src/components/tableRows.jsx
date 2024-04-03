@@ -20,7 +20,7 @@ const TableRows = ({
   const router = useRouter();
 
   const options = {
-    keys: ["region", "subregion", "name.common"],
+    keys: ["region", "subregion", "name.common", "independent", "unMember"],
     minMatchCharLength: 1,
     includeScore: true,
     useExtendedSearch: true,
@@ -36,6 +36,7 @@ const TableRows = ({
     } else {
       setFilterCountries([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
   const handleScroll = (e) => {
@@ -79,12 +80,39 @@ const TableRows = ({
     if (countries.length === 0) {
       fetchCountries();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const arrayOrder = orderBy(countries, orderProp);
     setCountries([...arrayOrder]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderProp]);
+
+  useEffect(() => {
+    if (checkIndpInput && checkMuInput) {
+      const filteredCountries = countries.filter(
+        (e) => e.unMember === checkMuInput && e.independent === checkIndpInput
+      );
+      setFilterCountries(filteredCountries);
+    } else if (checkMuInput) {
+      const filteredCountries = countries.filter(
+        (e) => e.unMember === checkMuInput
+      );
+      setFilterCountries(filteredCountries);
+    } else if (checkIndpInput) {
+      const filteredCountries = countries.filter(
+        (e) => e.independent === checkIndpInput
+      );
+      setFilterCountries(filteredCountries);
+    } else {
+      setFilterCountries([]);
+    }
+
+    // countries.forEach((e) => console.log(e.unMember, e.independent));
+  }, [checkIndpInput, checkMuInput]);
+
+  console.log(filterCountries);
 
   useEffect(() => {
     if (arrOfRegions.length > 0) {
@@ -99,6 +127,7 @@ const TableRows = ({
     } else {
       setFilterCountries([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arrOfRegions]);
 
   const handleClick = (country) => {
