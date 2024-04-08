@@ -33,7 +33,7 @@ const CountryPage = () => {
   useEffect(() => {
     const getCountryDetails = async () => {
       const response = await fetch(
-        `https://restcountries.com/v3.1/name/${countryName}`
+        `https://restcountries.com/v3.1/name/${countryName}?fullText=true`
       );
       const data = await response.json();
       setCountryDetails(data);
