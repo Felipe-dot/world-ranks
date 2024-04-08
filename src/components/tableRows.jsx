@@ -95,18 +95,22 @@ const TableRows = ({
         (e) => e.unMember === checkMuInput && e.independent === checkIndpInput
       );
       setFilterCountries(filteredCountries);
+      setCountriesFounded(filteredCountries.length);
     } else if (checkMuInput) {
       const filteredCountries = countries.filter(
         (e) => e.unMember === checkMuInput
       );
       setFilterCountries(filteredCountries);
+      setCountriesFounded(filteredCountries.length);
     } else if (checkIndpInput) {
       const filteredCountries = countries.filter(
         (e) => e.independent === checkIndpInput
       );
       setFilterCountries(filteredCountries);
+      setCountriesFounded(filteredCountries.length);
     } else {
       setFilterCountries([]);
+      setCountriesFounded(250);
     }
 
     // countries.forEach((e) => console.log(e.unMember, e.independent));
@@ -124,8 +128,10 @@ const TableRows = ({
       });
       const filteredCountries = results.map((e) => e.item);
       setFilterCountries(filteredCountries);
+      setCountriesFounded(filteredCountries.length);
     } else {
       setFilterCountries([]);
+      setCountriesFounded(250);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arrOfRegions]);
