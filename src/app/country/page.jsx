@@ -27,8 +27,40 @@ const CountryPage = () => {
       borders: [],
     },
   ]);
+  const [countryBorder, setCountryBorder] = useState([]);
+
   const searchParams = useSearchParams();
   let countryName = searchParams.get("name");
+
+  async function fetchCountryInfo(code) {
+    try {
+      const response = await fetch(
+        `https://restcountries.com/v3.1/alpha/${code}?fields=name,flags`
+      );
+      if (!response.ok) {
+        throw new Error(
+          `Erro ao buscar informações do país ${code}: ${response.status} ${response.statusText}`
+        );
+      }
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async function fetchAndSaveCountriesInfo(borders) {
+    const allCountriesInfo = [];
+
+    for (const code of borders) {
+      const countryInfo = await fetchCountryInfo(code);
+      if (countryInfo) {
+        allCountriesInfo.push(countryInfo);
+      }
+    }
+
+    setCountryBorder(allCountriesInfo);
+  }
 
   useEffect(() => {
     const getCountryDetails = async () => {
@@ -37,6 +69,9 @@ const CountryPage = () => {
       );
       const data = await response.json();
       setCountryDetails(data);
+      if (data[0].borders != undefined) {
+        await fetchAndSaveCountriesInfo(data[0].borders);
+      }
     };
     getCountryDetails();
   }, []);
@@ -145,15 +180,23 @@ const CountryPage = () => {
         <p className="text-[--gray] ml-5 mt-2 mb-4">Neighbouring Countries</p>
         {/* Neighbouring Countries */}
         <div className="flex overflow-y-auto">
-          <div className="flex flex-col items-center ml-5 cursor-pointer">
-            <Image
-              src={"https://flagcdn.com/bv.svg"}
-              height={10}
-              width={60}
-              alt="Country flag"
-            />
-            <p className="text-[--light-white] mt-2">Afghanistan</p>
-          </div>
+          {/* countryBorder.forEach((e) => console.log(e.flags.svg)); */}
+
+          {countryBorder.map((neighbourCountry) => (
+            <>
+              <div className="flex flex-col items-center ml-5 cursor-pointer">
+                <Image
+                  src={neighbourCountry.flags.svg}
+                  height={10}
+                  width={60}
+                  alt={neighbourCountry.flags.alt ?? "frag country"}
+                />
+                <p className="text-[--light-white] mt-2">
+                  {neighbourCountry.name.common}
+                </p>
+              </div>
+            </>
+          ))}
         </div>
       </div>
     </div>
