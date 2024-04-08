@@ -98,6 +98,11 @@ const Home = () => {
                   setArrOfRegions={setArrOfRegions}
                 />
                 <RegionTag
+                  region="Asia"
+                  arrOfRegions={arrOfRegions}
+                  setArrOfRegions={setArrOfRegions}
+                />
+                <RegionTag
                   region="Europe"
                   arrOfRegions={arrOfRegions}
                   setArrOfRegions={setArrOfRegions}
