@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import CountryAtrRow from "@/src/components/countryAtrRow";
 import { useEffect, useState } from "react";
 
@@ -31,6 +32,10 @@ const CountryPage = () => {
 
   const searchParams = useSearchParams();
   let countryName = searchParams.get("name");
+
+  // const handleClick = (country) => {
+  //   router.push(`/country?name=${country.name.common}`);
+  // };
 
   async function fetchCountryInfo(code) {
     try {
@@ -74,7 +79,7 @@ const CountryPage = () => {
       }
     };
     getCountryDetails();
-  }, []);
+  }, [countryName]);
 
   function concatenateCurrencies(data) {
     let currencyNames = [];
@@ -180,21 +185,21 @@ const CountryPage = () => {
         <p className="text-[--gray] ml-5 mt-2 mb-4">Neighbouring Countries</p>
         {/* Neighbouring Countries */}
         <div className="flex overflow-y-auto">
-          {/* countryBorder.forEach((e) => console.log(e.flags.svg)); */}
-
           {countryBorder.map((neighbourCountry) => (
             <>
-              <div className="flex flex-col items-center ml-5 cursor-pointer">
-                <Image
-                  src={neighbourCountry.flags.svg}
-                  height={10}
-                  width={60}
-                  alt={neighbourCountry.flags.alt ?? "frag country"}
-                />
-                <p className="text-[--light-white] mt-2">
-                  {neighbourCountry.name.common}
-                </p>
-              </div>
+              <Link href={`/country?name=${neighbourCountry.name.common}`}>
+                <div className="flex flex-col items-center ml-5 cursor-pointer">
+                  <Image
+                    src={neighbourCountry.flags.svg}
+                    height={10}
+                    width={60}
+                    alt={neighbourCountry.flags.alt ?? "frag country"}
+                  />
+                  <p className="text-[--light-white] mt-2">
+                    {neighbourCountry.name.common}
+                  </p>
+                </div>
+              </Link>
             </>
           ))}
         </div>
