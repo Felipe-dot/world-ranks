@@ -112,11 +112,7 @@ const TableRows = ({
       setFilterCountries([]);
       setCountriesFounded(250);
     }
-
-    // countries.forEach((e) => console.log(e.unMember, e.independent));
   }, [checkIndpInput, checkMuInput]);
-
-  console.log(filterCountries);
 
   useEffect(() => {
     if (arrOfRegions.length > 0) {
@@ -142,7 +138,7 @@ const TableRows = ({
 
   return (
     <div
-      className="ml-20 h-[600px] w-full overflow-y-auto"
+      className="md:ml-20 h-[600px] w-full overflow-y-auto"
       style={{ scrollbarWidth: "none" }}
       onScroll={handleScroll}
       key={"country-table"}
@@ -162,7 +158,7 @@ const TableRows = ({
             <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
               Area(km²)
             </th>
-            <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
+            <th className="md:block hidden text-[--gray] text-left border-b-2 border-[--gray] pb-2">
               Region
             </th>
           </tr>
@@ -200,7 +196,7 @@ const TableRows = ({
                           .replace(/\./g, " ")
                           .replace(",", ".")}
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg">
+                      <td className="md:block hidden text-[--light-white] font-semibold text-lg">
                         {country.region}
                       </td>
                     </tr>

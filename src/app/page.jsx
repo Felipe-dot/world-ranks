@@ -22,12 +22,12 @@ const Home = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="relative bottom-20 bg-[--gray-black] shadow-2xl w-11/12 h-[700px] rounded-md z-20">
-        <div className="flex mt-4 items-center justify-between ml-5 mr-5">
-          <h3 className="text-[--gray] font-semibold">
+      <div className="relative md:bottom-20 bg-[--gray-black] md:shadow-2xl w-11/12 h-[700px] rounded-md z-20">
+        <div className="flex mt-4 items-center justify-between md:ml-5 md:mr-5">
+          <h3 className="text-[--gray]  text-sm sm:text-base font-semibold">
             Found {countriesFounded} countries
           </h3>
-          <div className="relative">
+          <div className="relative w-80 md:w-auto">
             <div className="absolute inset-y-0 left-2 flex items-center ">
               <Image
                 src="Search.svg"
@@ -37,7 +37,7 @@ const Home = () => {
               />
             </div>
             <input
-              className="pl-10 appearance-none focus:outline-none p-2 rounded-lg w-96 bg-[--dark-black] shadow-md text-[--light-white] "
+              className="pl-10 appearance-none focus:outline-none p-2 rounded-lg w-full md:w-96 bg-[--dark-black] shadow-md text-[--light-white] text-sm md:text-base "
               type="text"
               name="searchby"
               id="srcby"
@@ -49,8 +49,8 @@ const Home = () => {
             />
           </div>
         </div>
-        <div className="ml-5 flex justify-between">
-          <div className="flex flex-col h-96 justify-around">
+        <div className="md:ml-5 flex-col md:flex md:flex-row justify-between">
+          <div className="flex flex-col h-96 justify-between">
             {/* Sort by */}
             <div>
               <p className="text-[--gray] mb-2 mt-8 text-sm font-semibold">
@@ -67,7 +67,7 @@ const Home = () => {
                 </div>
               </div>
               <select
-                className="appearance-none focus:outline-none rounded-lg w-72 p-2 pl-2 bg-[--gray-black] text-[--light-white] border-2 border-[--gray] mb-4"
+                className="appearance-none focus:outline-none rounded-lg w-full md:w-72 p-2 pl-2 bg-[--gray-black] text-[--light-white] border-2 border-[--gray] mb-4"
                 name="sortBy"
                 value={orderProp}
                 onChange={handleChange}
@@ -81,7 +81,7 @@ const Home = () => {
             <div>
               <p className="text-[--gray] mb-2 text-sm font-semibold">Region</p>
               {/* Tags */}
-              <div className="grid grid-cols-3 gap-2 mb-5">
+              <div className="grid grid-cols-6 md:grid-cols-3 gap-2 mb-5">
                 <RegionTag
                   region="Americas"
                   arrOfRegions={arrOfRegions}
