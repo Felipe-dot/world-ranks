@@ -120,9 +120,9 @@ const CountryPage = () => {
         {/* Country Flag */}
         <div className="flex items-center justify-around h-80 flex-col ">
           <Image
-            className="rounded-2xl relative bottom-8"
+            className="rounded-2xl relative bottom-5"
             src={countryDetails[0].flags.svg}
-            height={10}
+            height={250}
             width={250}
             alt="Country flag"
           />

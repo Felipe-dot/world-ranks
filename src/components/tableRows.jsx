@@ -143,16 +143,16 @@ const TableRows = ({
       onScroll={handleScroll}
       key={"country-table"}
     >
-      <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 w-11/12">
+      <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 md:w-11/12 w-full">
         <thead>
           <tr>
             <th className="text-[--gray] text-left w-32 border-b-2 border-[--gray] pb-2">
               Flag
             </th>
-            <th className="text-[--gray] text-left w-72 border-b-2 border-[--gray] pb-2">
+            <th className="text-[--gray] text-left md:w-72 w-42  border-b-2 border-[--gray] pb-2">
               Name
             </th>
-            <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2 ">
+            <th className="text-[--gray] text-left md:w-auto w-40 border-b-2 border-[--gray] pb-2 ">
               Population
             </th>
             <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
@@ -233,7 +233,7 @@ const TableRows = ({
                           .replace(/\./g, " ")
                           .replace(",", ".")}
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg">
+                      <td className="text-[--light-white] font-semibold text-lg md:block hidden">
                         {country.region}
                       </td>
                     </tr>
