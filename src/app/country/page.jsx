@@ -116,25 +116,28 @@ const CountryPage = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="relative bottom-10 bg-[--gray-black] shadow-2xl w-1/2 h-[830px] rounded-lg z-20">
+      <div className="relative  md:bottom-10 bg-[--gray-black] md:shadow-2xl w-screen md:w-1/2 h-[830px] rounded-lg z-20">
         {/* Country Flag */}
         <div className="flex items-center justify-around h-80 flex-col ">
-          <Image
-            className="rounded-2xl relative bottom-5"
-            src={countryDetails[0].flags.svg}
-            height={250}
-            width={250}
-            alt="Country flag"
-          />
+          <div className="w-[220px] mb-5">
+            <Image
+              className="rounded-2xl"
+              width={0}
+              height={0}
+              src={countryDetails[0].flags.svg}
+              layout="responsive"
+              alt="Country flag"
+            />
+          </div>
           <div className="flex flex-col items-center justify-center">
-            <h1 className="text-[--light-white] text-3xl font-bold">
+            <h1 className="text-[--light-white] text-center text-3xl font-bold">
               {countryDetails[0].name.common}
             </h1>
             <h3 className="text-[--light-white]">
               {countryDetails[0].name.official}
             </h3>
           </div>
-          <div className="flex justify-evenly w-[600px] mb-20 mt-10">
+          <div className="flex justify-evenly w-screen  md:w-[600px] mb-20 mt-10">
             <div className="flex items-center bg-[--gray] rounded-xl p-2 opacity-75">
               <p className="text-[--light-white]">Population</p>
               <hr className=" border ml-2 mr-2 opacity-75 border-black h-full" />
