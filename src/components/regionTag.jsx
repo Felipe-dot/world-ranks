@@ -12,8 +12,8 @@ const RegionTag = ({ region, arrOfRegions, setArrOfRegions }) => {
       onClick={() => setRegionTag()}
       className={`${
         arrOfRegions.includes(region)
-          ? "flex items-center justify-center rounded-lg p-1 text-[--light-white] bg-[--gray] cursor-pointer"
-          : "flex items-center justify-center text-[--gray] font-medium cursor-pointer"
+          ? "flex items-center justify-center rounded-lg p-1 text-[--light-white] bg-[--gray] cursor-pointer sm:text-base text-xs"
+          : "flex items-center justify-center text-[--gray] font-medium cursor-pointer  sm:text-base text-xs"
       } `}
     >
       {region}

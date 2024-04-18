@@ -155,10 +155,10 @@ const TableRows = ({
             <th className="text-[--gray] text-left md:w-auto w-40 border-b-2 border-[--gray] pb-2 ">
               Population
             </th>
-            <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2">
+            <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2 hidden sm:table-cell">
               Area(km²)
             </th>
-            <th className="md:block hidden text-[--gray] text-left border-b-2 border-[--gray] pb-2">
+            <th className="md:table-cell hidden text-[--gray] text-left border-b-2 border-[--gray] pb-2">
               Region
             </th>
           </tr>
@@ -181,22 +181,22 @@ const TableRows = ({
                           alt={country.flags.alt ?? "country flag"}
                         />
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg">
+                      <td className="text-[--light-white] font-semibold  sm:text-lg text-sm">
                         {country.name.common}
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg">
+                      <td className="text-[--light-white] font-semibold  sm:text-lg text-sm">
                         {country.population
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ",")}
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg">
+                      <td className="text-[--light-white] font-semibold  sm:text-lg text-sm hidden sm:table-cell">
                         {country.area
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ".")}
                       </td>
-                      <td className="md:block hidden text-[--light-white] font-semibold text-lg">
+                      <td className="md:block hidden text-[--light-white] font-semibold  sm:text-lg text-sm">
                         {country.region}
                       </td>
                     </tr>
@@ -227,7 +227,7 @@ const TableRows = ({
                           .replace(/\./g, " ")
                           .replace(",", ",")}
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg">
+                      <td className="text-[--light-white] font-semibold text-lg hidden sm:table-cell ">
                         {country.area
                           .toLocaleString()
                           .replace(/\./g, " ")

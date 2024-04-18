@@ -21,7 +21,7 @@ const CheckInput = ({ inputText, checkInput, setCheckInput }) => {
           </div>
         )}
       </div>
-      <div className="flex mb-2">
+      <div className="flex mb-2 items-center">
         <input
           className="w-[1.4em] h-[1.4em] cursor-pointer mr-4 appearance-none border-[1px] rounded-lg checked:bg-[--blue]"
           type="checkbox"
@@ -30,7 +30,7 @@ const CheckInput = ({ inputText, checkInput, setCheckInput }) => {
           checked={checkInput}
           onChange={() => setInput()}
         />
-        <label className="text-[--light-white] font-semibold">
+        <label className="text-[--light-white] text-xs sm:text-base font-semibold">
           {inputText}
         </label>
       </div>

@@ -33,10 +33,6 @@ const CountryPage = () => {
   const searchParams = useSearchParams();
   let countryName = searchParams.get("name");
 
-  // const handleClick = (country) => {
-  //   router.push(`/country?name=${country.name.common}`);
-  // };
-
   async function fetchCountryInfo(code) {
     try {
       const response = await fetch(
@@ -119,7 +115,11 @@ const CountryPage = () => {
       <div className="relative  md:bottom-10 bg-[--gray-black] md:shadow-2xl w-screen md:w-1/2 h-[830px] rounded-lg z-20">
         {/* Country Flag */}
         <div className="flex items-center justify-around h-80 flex-col ">
-          <div className="w-[220px] mb-5">
+          <div
+            className={`w-[220px] ${
+              countryName == "Vatican City" ? "lg:w-[220px]" : "lg:w-[330px]"
+            } mb-5`}
+          >
             <Image
               className="rounded-2xl"
               width={0}
