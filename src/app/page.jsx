@@ -67,7 +67,7 @@ const Home = () => {
                 </div>
               </div>
               <select
-                className="appearance-none focus:outline-none rounded-lg w-full md:w-72 p-2 pl-2 bg-[--gray-black] text-[--light-white] border-2 border-[--gray] mb-4 text-xs sm:text-base"
+                className="appearance-none focus:outline-none rounded-lg w-full md:w-64 lg:w-72 p-2 pl-2 bg-[--gray-black] text-[--light-white] border-2 border-[--gray] mb-4 text-xs sm:text-base"
                 name="sortBy"
                 value={orderProp}
                 onChange={handleChange}
@@ -83,7 +83,7 @@ const Home = () => {
                 Region
               </p>
               {/* Tags */}
-              <div className="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-3 gap-2 mb-5">
+              <div className="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-5">
                 <RegionTag
                   region="Americas"
                   arrOfRegions={arrOfRegions}

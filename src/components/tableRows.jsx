@@ -138,7 +138,7 @@ const TableRows = ({
 
   return (
     <div
-      className="md:ml-20 h-[600px] w-full overflow-y-auto"
+      className="md:ml-5 lg:ml-20 h-[600px] w-full overflow-y-auto"
       style={{ scrollbarWidth: "none" }}
       onScroll={handleScroll}
       key={"country-table"}
@@ -149,16 +149,16 @@ const TableRows = ({
             <th className="text-[--gray] text-left w-32 border-b-2 border-[--gray] pb-2">
               Flag
             </th>
-            <th className="text-[--gray] text-left md:w-72 w-42  border-b-2 border-[--gray] pb-2">
+            <th className="text-[--gray] text-left md:w-72  sm:w-42 w-36  border-b-2 border-[--gray] pb-2">
               Name
             </th>
-            <th className="text-[--gray] text-left md:w-auto w-40 border-b-2 border-[--gray] pb-2 ">
+            <th className="text-[--gray] text-left md:w-60 lg:w-auto  border-b-2 border-[--gray] pb-2 ">
               Population
             </th>
-            <th className="text-[--gray] text-left border-b-2 border-[--gray] pb-2 hidden sm:table-cell">
+            <th className="text-[--gray] text-left border-b-2  border-[--gray] pb-2 hidden sm:table-cell">
               Area(km²)
             </th>
-            <th className="md:table-cell hidden text-[--gray] text-left border-b-2 border-[--gray] pb-2">
+            <th className="lg:table-cell hidden text-[--gray] text-left border-b-2 border-[--gray] pb-2">
               Region
             </th>
           </tr>
@@ -181,22 +181,22 @@ const TableRows = ({
                           alt={country.flags.alt ?? "country flag"}
                         />
                       </td>
-                      <td className="text-[--light-white] font-semibold  sm:text-lg text-sm">
+                      <td className="text-[--light-white] font-semibold  lg:text-lg text-sm">
                         {country.name.common}
                       </td>
-                      <td className="text-[--light-white] font-semibold  sm:text-lg text-sm">
+                      <td className="text-[--light-white] font-semibold  lg:text-lg text-sm">
                         {country.population
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ",")}
                       </td>
-                      <td className="text-[--light-white] font-semibold  sm:text-lg text-sm hidden sm:table-cell">
+                      <td className="text-[--light-white] font-semibold  lg:text-lg text-sm hidden sm:table-cell">
                         {country.area
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ".")}
                       </td>
-                      <td className="md:block hidden text-[--light-white] font-semibold  sm:text-lg text-sm">
+                      <td className="lg:block hidden text-[--light-white] font-semibold  lg:text-lg text-sm">
                         {country.region}
                       </td>
                     </tr>
@@ -218,22 +218,22 @@ const TableRows = ({
                           alt={country.flags.alt ?? "country flag"}
                         />
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg">
+                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm">
                         {country.name.common}
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg">
+                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm">
                         {country.population
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ",")}
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg hidden sm:table-cell ">
+                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm hidden sm:table-cell ">
                         {country.area
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ".")}
                       </td>
-                      <td className="text-[--light-white] font-semibold text-lg md:block hidden">
+                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm lg:block hidden">
                         {country.region}
                       </td>
                     </tr>

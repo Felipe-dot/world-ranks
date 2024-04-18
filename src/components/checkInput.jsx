@@ -30,7 +30,10 @@ const CheckInput = ({ inputText, checkInput, setCheckInput }) => {
           checked={checkInput}
           onChange={() => setInput()}
         />
-        <label className="text-[--light-white] text-xs sm:text-base font-semibold">
+        <label
+          className="text-[--light-white] text-xs sm:text-base font-semibold 
+        "
+        >
           {inputText}
         </label>
       </div>

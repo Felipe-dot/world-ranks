@@ -112,7 +112,7 @@ const CountryPage = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="relative  md:bottom-10 bg-[--gray-black] md:shadow-2xl w-screen md:w-1/2 h-[830px] rounded-lg z-20">
+      <div className="relative  md:bottom-10 bg-[--gray-black] md:shadow-2xl w-screen md:w-2/3 lg:w-1/2 h-[830px] rounded-lg z-20">
         {/* Country Flag */}
         <div className="flex items-center justify-around h-80 flex-col ">
           <div
@@ -139,9 +139,11 @@ const CountryPage = () => {
           </div>
           <div className="flex justify-evenly w-screen  md:w-[600px] mb-20 mt-10">
             <div className="flex items-center bg-[--gray] rounded-xl p-2 opacity-75">
-              <p className="text-[--light-white]">Population</p>
+              <p className="text-[--light-white] text-xs sm:text-base">
+                Population
+              </p>
               <hr className=" border ml-2 mr-2 opacity-75 border-black h-full" />
-              <p className="text-[--light-white]">
+              <p className="text-[--light-white] text-xs sm:text-base">
                 {countryDetails[0].population
                   .toLocaleString()
                   .replace(/\./g, " ")
@@ -149,9 +151,11 @@ const CountryPage = () => {
               </p>
             </div>
             <div className="flex items-center  bg-[--gray] rounded-xl p-2 opacity-75">
-              <p className="text-[--light-white]">Area(km²)</p>
+              <p className="text-[--light-white]  text-xs sm:text-base">
+                Area(km²)
+              </p>
               <hr className=" border ml-2 mr-2 opacity-75 border-black h-full" />
-              <p className="text-[--light-white]">
+              <p className="text-[--light-white]  text-xs sm:text-base">
                 {" "}
                 {countryDetails[0].area
                   .toLocaleString()
