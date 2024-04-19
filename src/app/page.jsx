@@ -22,13 +22,13 @@ const Home = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="relative md:bottom-20 bg-[--gray-black] md:shadow-2xl w-11/12 h-[700px] rounded-md z-20">
+      <div className="relative md:bottom-20 bg-[--dark-black] md:shadow-2xl w-11/12 xl:w-full xl:ml-10 xl:mr-10 h-[700px] rounded-md z-20">
         <div className="flex mt-4 items-center justify-between md:ml-5 md:mr-5">
           <h3 className="text-[--gray]  text-xs sm:text-sm md:text-base font-semibold">
             Found {countriesFounded} countries
           </h3>
           <div className="relative w-80 md:w-auto">
-            <div className="absolute inset-y-0 left-2 flex items-center ">
+            <div className="absolute inset-y-8 left-2 flex items-center ">
               <Image
                 src="Search.svg"
                 width={25}
@@ -37,7 +37,7 @@ const Home = () => {
               />
             </div>
             <input
-              className="pl-10 appearance-none focus:outline-none p-2 rounded-lg w-full md:w-96 bg-[--dark-black] shadow-md text-[--light-white]    text-xs sm:text-sm md:text-base"
+              className="pl-10 appearance-none focus:outline-none p-3 mt-2 rounded-lg w-full md:w-96 bg-[--gray-black] shadow-md text-[--light-white]    text-xs sm:text-sm md:text-base"
               type="text"
               name="searchby"
               id="srcby"
@@ -67,7 +67,7 @@ const Home = () => {
                 </div>
               </div>
               <select
-                className="appearance-none focus:outline-none rounded-lg w-full md:w-64 lg:w-72 p-2 pl-2 bg-[--gray-black] text-[--light-white] border-2 border-[--gray] mb-4 text-xs sm:text-base"
+                className="appearance-none focus:outline-none rounded-lg w-full md:w-64 lg:w-72 p-2 pl-2 bg-[--dark-black] text-[--light-white] border-2 border-[--gray] mb-4 text-xs sm:text-base"
                 name="sortBy"
                 value={orderProp}
                 onChange={handleChange}
@@ -94,6 +94,8 @@ const Home = () => {
                   arrOfRegions={arrOfRegions}
                   setArrOfRegions={setArrOfRegions}
                 />
+                <br className="hidden xl:block" />
+
                 <RegionTag
                   region="Africa"
                   arrOfRegions={arrOfRegions}

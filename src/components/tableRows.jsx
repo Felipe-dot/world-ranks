@@ -50,18 +50,18 @@ const TableRows = ({
   function orderBy(array, prop) {
     return array.sort(function (a, b) {
       if (prop == "name") {
-        if (a[prop].common < b[prop].common) {
+        if (a[prop].common > b[prop].common) {
           return -1;
         }
-        if (a[prop].common > b[prop].common) {
+        if (a[prop].common < b[prop].common) {
           return 1;
         }
       }
 
-      if (a[prop] < b[prop]) {
+      if (a[prop] > b[prop]) {
         return -1;
       }
-      if (a[prop] > b[prop]) {
+      if (a[prop] < b[prop]) {
         return 1;
       }
       return 0;
@@ -138,27 +138,27 @@ const TableRows = ({
 
   return (
     <div
-      className="md:ml-5 lg:ml-20 h-[600px] w-full overflow-y-auto"
+      className="md:ml-5 lg:ml-20 xl:ml-7 h-[600px] w-full overflow-y-auto"
       style={{ scrollbarWidth: "none" }}
       onScroll={handleScroll}
       key={"country-table"}
     >
-      <table className="table-auto border-separate border-spacing-y-5  appearance-none mt-4 md:w-11/12 w-full">
+      <table className="table-auto border-separate border-spacing-y-5 appearance-none mt-4 md:w-11/12 xl:w-full xl:pr-5 w-full">
         <thead>
           <tr>
-            <th className="text-[--gray] text-left w-32 border-b-2 border-[--gray] pb-2">
+            <th className="text-[--gray] text-sm  text-left w-32 xl:w-24 2xl:w-auto border-b-2 border-[--gray] pb-2">
               Flag
             </th>
-            <th className="text-[--gray] text-left md:w-72  sm:w-42 w-36  border-b-2 border-[--gray] pb-2">
+            <th className="text-[--gray] text-sm  text-left md:w-72  sm:w-42 w-36 xl:w-44  2xl:w-auto border-b-2 border-[--gray] pb-2">
               Name
             </th>
-            <th className="text-[--gray] text-left md:w-60 lg:w-auto  border-b-2 border-[--gray] pb-2 ">
+            <th className="text-[--gray]  text-sm text-left md:w-60 lg:w-auto xl:w-56 2xl:w-auto border-b-2 border-[--gray] pb-2 ">
               Population
             </th>
-            <th className="text-[--gray] text-left border-b-2  border-[--gray] pb-2 hidden sm:table-cell">
+            <th className="text-[--gray]  text-sm text-left border-b-2 xl:w-56 2xl:w-auto  border-[--gray] pb-2 hidden sm:table-cell">
               Area(km²)
             </th>
-            <th className="lg:table-cell hidden text-[--gray] text-left border-b-2 border-[--gray] pb-2">
+            <th className="lg:table-cell  text-sm hidden text-[--gray]  text-left border-b-2 border-[--gray] pb-2">
               Region
             </th>
           </tr>
@@ -174,29 +174,33 @@ const TableRows = ({
                       onClick={() => handleClick(country)}
                     >
                       <td>
-                        <Image
-                          src={country.flags.svg}
-                          width={80}
-                          height={10}
-                          alt={country.flags.alt ?? "country flag"}
-                        />
+                        <div className="w-[60px] ">
+                          <Image
+                            className="rounded-md"
+                            src={country.flags.svg}
+                            width={0}
+                            height={0}
+                            layout="responsive"
+                            alt={country.flags.alt ?? "country flag"}
+                          />
+                        </div>
                       </td>
-                      <td className="text-[--light-white] font-semibold  lg:text-lg text-sm">
+                      <td className="text-[--light-white] font-semibold  lg:text-lg xl:text-base  text-sm">
                         {country.name.common}
                       </td>
-                      <td className="text-[--light-white] font-semibold  lg:text-lg text-sm">
+                      <td className="text-[--light-white] font-semibold  lg:text-lg xl:text-base  text-sm">
                         {country.population
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ",")}
                       </td>
-                      <td className="text-[--light-white] font-semibold  lg:text-lg text-sm hidden sm:table-cell">
+                      <td className="text-[--light-white] font-semibold  lg:text-lg text-sm xl:text-base hidden sm:table-cell">
                         {country.area
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ".")}
                       </td>
-                      <td className="lg:block hidden text-[--light-white] font-semibold  lg:text-lg text-sm">
+                      <td className="lg:block hidden text-[--light-white] font-semibold  lg:text-lg xl:text-base  text-sm">
                         {country.region}
                       </td>
                     </tr>
@@ -211,29 +215,33 @@ const TableRows = ({
                       onClick={() => handleClick(country)}
                     >
                       <td>
-                        <Image
-                          src={country.flags.svg}
-                          width={80}
-                          height={10}
-                          alt={country.flags.alt ?? "country flag"}
-                        />
+                        <div className="w-[60px] ">
+                          <Image
+                            className="rounded-md"
+                            src={country.flags.svg}
+                            width={0}
+                            height={0}
+                            layout="responsive"
+                            alt={country.flags.alt ?? "country flag"}
+                          />
+                        </div>
                       </td>
-                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm">
+                      <td className="text-[--light-white] font-semibold lg:text-lg  xl:text-base text-sm">
                         {country.name.common}
                       </td>
-                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm">
+                      <td className="text-[--light-white] font-semibold lg:text-lg  xl:text-base text-sm">
                         {country.population
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ",")}
                       </td>
-                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm hidden sm:table-cell ">
+                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm  xl:text-base hidden sm:table-cell ">
                         {country.area
                           .toLocaleString()
                           .replace(/\./g, " ")
                           .replace(",", ".")}
                       </td>
-                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm lg:block hidden">
+                      <td className="text-[--light-white] font-semibold lg:text-lg text-sm lg:block   xl:text-base hidden">
                         {country.region}
                       </td>
                     </tr>

@@ -23,7 +23,7 @@ const CheckInput = ({ inputText, checkInput, setCheckInput }) => {
       </div>
       <div className="flex mb-2 items-center">
         <input
-          className="w-[1.4em] h-[1.4em] cursor-pointer mr-4 appearance-none border-[1px] rounded-lg checked:bg-[--blue]"
+          className="w-[1.5em] h-[1.5em] cursor-pointer mr-4 appearance-none border-[1px] rounded-md checked:bg-[--blue]"
           type="checkbox"
           name={inputText}
           id={inputText}
